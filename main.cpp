@@ -18,12 +18,12 @@ using namespace std ;
 
 Block block = 
 {
-{0, 0, 0, 5, 2, 2},
-{0, 0, 3, 5, 0, 11},
-{4, 4, 3, 7, 9, 11},
-{6, 6, 0, 7, 9, 13},
-{1, 8, 8, 8, 9, 13},
-{1, 10, 10, 0, 0, 0}
+{2, 2, 2, 0, 0, 7},
+{0, 0, 1, 0, 0, 7},
+{0, 0, 1, 4, 4, 7},
+{6, 6, 6, 5, 0, 0},
+{0, 0, 3, 5, 0, 0},
+{0, 0, 3, 5, 8, 8}
 };
 
 int BlockforSet::row = ARRAY_ROW ;
@@ -63,6 +63,7 @@ int main()
 	setIndex.erase(0) ;
 	
 	Direct direct ;
+	char chd ;
 	setIndexIter = setIndex.begin() ;
 
 	key = make_pair(curDepth, curIndex) ;
@@ -128,10 +129,20 @@ int main()
 					mapNodeIter = mapNodeIter->second.parentIter ;
 				}
 
+				printf("R = Right\n") ;
+				printf("L = Left\n") ;
+				printf("U = Up\n") ;
+				printf("D = Down\n\n") ;
+
 				for(int ii = 0; ii < 6; ii++)
 				{
 					for(int jj = 0; jj < 6; jj++)
-						printf("%2d ", mapNodeIter->second.block[ii][jj]) ;
+					{
+						if(mapNodeIter->second.block[ii][jj])
+							printf("%2d ", mapNodeIter->second.block[ii][jj]) ;
+						else
+							printf(" . ") ;
+					}
 					printf("\n") ;
 				}
 				printf("\n") ;
@@ -143,16 +154,25 @@ int main()
 					if(mapNodeIter->second.flagOK)
 					{
 						count++ ;
-						printf("[%d.%d]", mapNodeIter->second.movedBlockNumber,
-								mapNodeIter->second.direct) ;
 
-						if(count % 3 == 0)
+						if(mapNodeIter == mapNode.begin())
+							continue ;
+						
+						direct = mapNodeIter->second.direct ;
+						chd = (direct == eDirect_Left) 	? 'L' : chd ;
+						chd = (direct == eDirect_Up) 	? 'U' : chd ;
+						chd = (direct == eDirect_Right) ? 'R' : chd ;
+						chd = (direct == eDirect_Down) 	? 'D' : chd ;
+
+						printf("[%d.%c]", mapNodeIter->second.movedBlockNumber, chd) ;
+
+						if(count % 3 == 1)
 							printf("\n\n") ;
 						else
 							printf(" ->") ;
 					}
 				}
-				printf("Total Count : %d\n", count) ;
+				printf("\nTotal Count : %d\n", count) ;
 				return 0 ;
 			}
 		}
