@@ -4,20 +4,19 @@ Author : LEE Ho Sang
 E-Mail : hahaite@hanmail.net  
 Site : http://hahaite.tistory.com/273 (Korean)
 
-Language : C++
+Language : C++  
 Test OS : Ubuntu 14.04
 
-#### License
+### License
 - This software is FREE and No Warranty.
 - Everyone uses this software without any restrictions.
 
 Who uses this software? :)
 
-#### description
+### description
 In main.cpp, can find MASTER_BLOCK and array Block.
 And set values as below image.
 
-image test
 ![image Test](unblockme.jpg)
 
 after compile and execute,  
